@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ColabRioMar"
         tools:targetApi="31">
         <activity
+            android:name=".finalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IdentificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ImageDisplayActivity"
             android:exported="false" />
         <activity

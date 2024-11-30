@@ -26,6 +26,13 @@ class ImageDisplayActivity : AppCompatActivity() {
             openCamera()
         }
 
+        val classify_button = findViewById<Button>(R.id.classify_button)
+        classify_button.setOnClickListener{
+            val intent = Intent(this, IdentificationActivity::class.java)
+            intent.putExtra("imageBitmap", imageBitmap)
+            startActivity(intent)
+        }
+
     }
 
     // Método para abrir a câmera novamente

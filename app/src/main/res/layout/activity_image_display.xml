@@ -19,8 +19,9 @@
 
     <ImageView
         android:id="@+id/capturedImageView"
-        android:layout_width="415dp"
-        android:layout_height="379dp"
+        android:layout_width="392dp"
+        android:layout_height="370dp"
+        android:background="@drawable/rounded_textview_background"
         android:baselineAlignBottom="true"
         android:foregroundTint="#1C621F"
         android:scaleType="centerCrop"
@@ -28,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.289"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="12dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -48,8 +49,8 @@
 
     <Button
         android:id="@+id/btnNewPhoto"
-        android:layout_width="170dp"
-        android:layout_height="47dp"
+        android:layout_width="219dp"
+        android:layout_height="54dp"
         android:layout_marginTop="44dp"
         android:backgroundTint="#322F35"
         android:drawableEnd="@android:drawable/ic_menu_add"
@@ -61,11 +62,11 @@
 
     <Button
         android:id="@+id/classify_button"
-        android:layout_width="181dp"
-        android:layout_height="47dp"
+        android:layout_width="213dp"
+        android:layout_height="59dp"
         android:backgroundTint="#322F35"
         android:drawableEnd="@android:drawable/ic_menu_search"
-        android:text="Identificar"
+        android:text="Identificar residuos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
