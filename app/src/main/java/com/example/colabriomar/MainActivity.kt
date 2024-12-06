@@ -1,41 +1,52 @@
 package com.example.colabriomar
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.colabriomar.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
-    private val REQUEST_IMAGE_CAPTURE = 1
+    private lateinit var binding: ActivityMainBinding
+
+    companion object{
+        lateinit var auth: FirebaseAuth
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val openCameraButton = findViewById<Button>(R.id.openCameraButton)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        openCameraButton.setOnClickListener {
-            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            if (takePictureIntent.resolveActivity(packageManager) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            }
+        auth = FirebaseAuth.getInstance()
+
+        if(auth.currentUser == null){
+            startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+        }
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.signIn.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+        }
+        binding.signOut.setOnClickListener {
+            auth.signOut()
+            binding.userDetails.text = updateData()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            // Envia a imagem para a próxima tela
-            val intent = Intent(this, ImageDisplayActivity::class.java)
-            intent.putExtra("imageBitmap", imageBitmap)
-            startActivity(intent)
-        }
+    override fun onResume() {
+        super.onResume()
+        binding.userDetails.text = updateData()
+    }
 
+    private fun updateData(): String{
+        return "Email : ${auth.currentUser?.email}"
     }
 
 }

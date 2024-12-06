@@ -27,9 +27,9 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.289"
+        app:layout_constraintVertical_bias="0.351"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="12dp" />
+        tools:layout_editor_absoluteX="9dp" />
 
     <TextView
         android:id="@+id/textView"
